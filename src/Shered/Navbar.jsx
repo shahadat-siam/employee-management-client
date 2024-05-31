@@ -1,6 +1,7 @@
 import { IoMdClose } from "react-icons/io";
 import { RiMenu2Line } from "react-icons/ri";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const hundleMenuBar = () => {
@@ -20,7 +21,6 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-
           <div id="nav-item" className={`md:flex hidden`}>
             <li>
               <a href="#" className=" ">
@@ -49,10 +49,18 @@ const Navbar = () => {
           </div>
 
           <div className="md:ml-10 flex gap-2 mx-4">
-             <button className="btn hidden md:flex  bg-[#008080ef] hover:bg-[#008080] text-white">Register</button> 
-             <button className="btn bg-[#008080ef] hover:bg-[#008080] text-white">Login</button> 
+            <Link to="/register">
+              <button className="btn hidden md:flex  bg-[#008080ef] hover:bg-[#008080] text-white">
+                Register
+              </button>
+            </Link>
+             <Link to='/login'>
+             <button className="btn bg-[#008080ef] hover:bg-[#008080] text-white">
+              Login
+            </button>
+             </Link>
           </div>
-           
+
           {/* <div className='dropdown dropdown-end '>
           <div
             tabIndex={0}
@@ -78,16 +86,14 @@ const Navbar = () => {
           </div>  */}
 
           <div id="menu" className="md:hidden flex">
-          <li
-            onClick={hundleMenuBar}
-            className="text-2xl cursor-pointer font-semibold list-none text-[#0C2D57]"
-          >
-            <RiMenu2Line />
-          </li>
+            <li
+              onClick={hundleMenuBar}
+              className="text-2xl cursor-pointer font-semibold list-none text-[#0C2D57]"
+            >
+              <RiMenu2Line />
+            </li>
           </div>
         </div>
-
-        
       </div>
     </>
   );
