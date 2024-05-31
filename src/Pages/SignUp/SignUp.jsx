@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { imageUpload } from "../../Component/api";
 
 const SignUp = () => {
 
@@ -18,7 +20,15 @@ const SignUp = () => {
     const image = form.image.files[0] 
 
     console.table(designation, email, password, role, bank_no, salary, image)
-    
+    try{ 
+        // upload image  and get image
+        const image_url = await imageUpload(image)
+        console.log(image_url )
+         
+        toast.success('sign up successfully')
+      } catch(err) {
+        toast.error(err.message)
+      }
   }
 
   return (
