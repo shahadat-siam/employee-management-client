@@ -8,7 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
 
-  const { createUser, loading, updateUserProfile, signInWithGoogle } = useAuth();
+  const { createUser, loading, setLoading, updateUserProfile, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   // create user email password
@@ -34,6 +34,7 @@ const SignUp = () => {
     } 
  
     try {
+        setLoading(true)
       // upload image  and get image
       const image_url = await imageUpload(image);
 
