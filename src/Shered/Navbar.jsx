@@ -2,8 +2,11 @@ import { IoMdClose } from "react-icons/io";
 import { RiMenu2Line } from "react-icons/ri";
 import "./style.css";
 import { Link } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user, loading } = useAuth();
+   
   const hundleMenuBar = () => {
     const nav = document.getElementById("nav-item");
     nav.classList.add("active");
@@ -48,42 +51,46 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="md:ml-10 flex gap-2 mx-4">
-            <Link to="/register">
-              <button className="btn hidden md:flex  bg-[#008080ef] hover:bg-[#008080] text-white">
-                Register
-              </button>
-            </Link>
-             <Link to='/login'>
-             <button className="btn bg-[#008080ef] hover:bg-[#008080] text-white">
-              Login
-            </button>
-             </Link>
-          </div>
-
-          {/* <div className='dropdown dropdown-end '>
-          <div
-            tabIndex={0}
-            role='button'
-            className='btn btn-ghost btn-circle avatar'
-          >
-            <div className='w-10 rounded-full' title=''>
-              <img 
-                referrerPolicy='no-referrer'
-                alt='User Profile Photo'
-                src= "../../public/employee.svg"
-              />
+          {user ? (
+            <div className="dropdown dropdown-end mx-3">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full" title="">
+                  <img 
+                    referrerPolicy="no-referrer"
+                    alt="User Profile Photo"
+                    src={user?.photoURL}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3  p-2 shadow-sm bg-base-100 rounded-box w-32"
+              >
+                <li className="mt-2">
+                  <button className="bg-gray-200 block text-center">
+                    Logout
+                  </button>
+                </li>
+              </ul>
             </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className='menu menu-sm dropdown-content mt-3  p-2 shadow-sm bg-base-100 rounded-box w-32'
-          > 
-            <li className='mt-2'>
-              <button className='bg-gray-200 block text-center'>Logout</button>
-            </li>
-          </ul>
-          </div>  */}
+          ) : (
+            <div className="md:ml-10 flex gap-2 mx-4">
+              <Link to="/register">
+                <button className="btn hidden md:flex  bg-[#008080ef] hover:bg-[#008080] text-white">
+                  Register
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="btn bg-[#008080ef] hover:bg-[#008080] text-white">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
 
           <div id="menu" className="md:hidden flex">
             <li

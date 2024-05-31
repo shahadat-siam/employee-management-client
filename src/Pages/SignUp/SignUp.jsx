@@ -2,34 +2,52 @@ import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../Component/api";
+import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
 
-    // create user email password
-  const hundleFormSignup = async (e) => {
-    e.preventDefault()
-    const form = e.target
-    const designation = form.designation.value
-    const email = form.email.value
-    const password = form.password.value
-    const role = form.role.value
-    const bank_no = form.bank_no.value
-    const salary = form.salary.value
-    const image = form.image.files[0] 
+  const { createUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
 
-    console.table(designation, email, password, role, bank_no, salary, image)
-    try{ 
-        // upload image  and get image
-        const image_url = await imageUpload(image)
-        console.log(image_url )
-         
-        toast.success('sign up successfully')
-      } catch(err) {
-        toast.error(err.message)
-      }
-  }
+  // create user email password
+  const hundleFormSignup = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const designation = form.designation.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const role = form.role.value;
+    const bank_no = form.bank_no.value;
+    const salary = form.salary.value;
+    const name = 'siam'
+    const image = form.image.files[0];
+
+    if(password.length < 6) {
+        const error = 'password should be 6 char'
+        return toast.error(error) 
+    }
+    else if(! /^(?=.*[a-z])(?=.*?[#?!@$%^&*-])(?=.*[A-Z]).+$/.test(password)){
+        const error = 'at least one capital latter & special character'
+        return toast.error(error)
+    } 
+ 
+    try {
+      // upload image  and get image
+      const image_url = await imageUpload(image);
+
+      // user register
+      const result = await createUser(email, password);
+
+      // update profile
+      await updateUserProfile(name, image_url) 
+      navigate("/");
+      toast.success("sign up successfully");
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
 
   return (
     <>
@@ -39,12 +57,16 @@ const SignUp = () => {
 
       <div className="flex flex-col py-2  justify-center items-center ">
         <div className="max-w-md flex flex-col rounded-md border border-[#008080]">
-
           <div className="flex justify-center bg-[#008080] p-3 text-white">
             <h2 className="uppercase font-semibold">Sign Up</h2>
           </div>
 
-          <form onSubmit={hundleFormSignup} noValidate="" action="" className="space-y-4 p-8  ">
+          <form
+            onSubmit={hundleFormSignup}
+            noValidate=""
+            action=""
+            className="space-y-4 p-8  "
+          >
             <div className="space-y-4">
               <div>
                 <label htmlFor="designation" className="block mb-2 text-sm">
