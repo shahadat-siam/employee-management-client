@@ -8,7 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
 
-  const { createUser, updateUserProfile } = useAuth();
+  const { createUser, loading, updateUserProfile, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   // create user email password
@@ -48,6 +48,17 @@ const SignUp = () => {
       toast.error(err.message);
     }
   };
+
+  // hundle google login 
+  const hundleGoogleLogin = async () => {
+    try{ 
+      await signInWithGoogle()
+      navigate('/')
+      toast.success('sign up successfully')
+    } catch(err) {
+      toast.error(err.message)
+    }
+  }
 
   return (
     <>
@@ -174,14 +185,12 @@ const SignUp = () => {
               </div>
             </div>
 
-            <div>
-              {/* disabled={loading} */}
-              <button
+            <div> 
+              <button disabled={loading}
                 type="submit"
                 className="bg-[#008080] w-full rounded-md py-3 text-white"
-              >
-                Continue
-                {/* {loading ? <TbFidgetSpinner className='animate-spin m-auto'/> : 'Continue'} */}
+              > 
+                {loading ? <TbFidgetSpinner className='animate-spin m-auto'/> : 'Continue'}
               </button>
             </div>
           </form>
@@ -203,7 +212,7 @@ const SignUp = () => {
           <p className="px-3 text-sm dark:text-gray-400">OR</p>
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
-        <button className="disabled:cursor-not-allowed w-[330px] flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer">
+        <button onClick={hundleGoogleLogin} disabled={loading} className="disabled:cursor-not-allowed w-[330px] flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer">
           <FcGoogle size={32} />
           <p>Continue with Google</p>
         </button>
