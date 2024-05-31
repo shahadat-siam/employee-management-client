@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
-  const { user, loading } = useAuth();
+  const { user, logOut } = useAuth();
    
   const hundleMenuBar = () => {
     const nav = document.getElementById("nav-item");
@@ -71,7 +71,7 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3  p-2 shadow-sm bg-base-100 rounded-box w-32"
               >
                 <li className="mt-2">
-                  <button className="bg-gray-200 block text-center">
+                  <button onClick={logOut} className="bg-gray-200 block text-center">
                     Logout
                   </button>
                 </li>
