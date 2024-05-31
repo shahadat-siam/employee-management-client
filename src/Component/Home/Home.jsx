@@ -6,9 +6,7 @@ const Home = () => {
         <div>
             <Helmet>
                 <title>Employee Management | Home</title>
-            </Helmet>
-            <h2>This is home</h2>
-            <img src="../../../public/logo.png" alt="" />
+            </Helmet> 
         </div>
     );
 };
