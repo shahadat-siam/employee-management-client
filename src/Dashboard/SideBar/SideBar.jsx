@@ -6,6 +6,8 @@ import MenuItem from '../MenuItem/MenuItem';
 import { BsGraphUp } from 'react-icons/bs';
 import { AiOutlineBars } from 'react-icons/ai';
 import useRole from '../../Hooks/useRole';
+import { FaUsersGear } from 'react-icons/fa6';
+import HRMenu from '../HR/HRMenu';
 
 const SideBar = () => {
     const [isActive, setActive] = useState(false);
@@ -63,6 +65,8 @@ const SideBar = () => {
                 
                 {/* Statistics */}
                 <MenuItem label='Statistics' address='/dashboard' icon={BsGraphUp} />  
+                {role === 'Admin' && <MenuItem label='All Employee' address='/dashboard/all-employee' icon={FaUsersGear}/>}
+                {role === 'HR' && <HRMenu/>}
               </nav>
             </div>
           </div>
