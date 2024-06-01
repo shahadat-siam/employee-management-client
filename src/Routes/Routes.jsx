@@ -3,6 +3,7 @@ import Main from "../LayOut/Main";
 import Home from "../Component/Home/Home";
 import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
+import Dashboard from "../LayOut/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,15 @@ const router = createBrowserRouter([
     {
       path:'/login',
       element: <Login/>
+    },
+    {
+      path: '/dashboard',
+      element: <Dashboard/>,
+      children: [
+        {
+          
+        }
+      ]
     }
   ]);
 export default router  

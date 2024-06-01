@@ -5,25 +5,28 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../Component/api";
 import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
 
 const SignUp = () => {
 
   const { createUser, loading, setLoading, updateUserProfile, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
+   
 
   // create user email password
   const hundleFormSignup = async (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value
     const designation = form.designation.value;
     const email = form.email.value;
     const password = form.password.value;
     const role = form.role.value;
     const bank_no = form.bank_no.value;
-    const salary = form.salary.value;
-    const name = 'siam'
+    const salary = form.salary.value; 
     const image = form.image.files[0];
-
+ 
+ 
     if(password.length < 6) {
         const error = 'password should be 6 char'
         return toast.error(error) 
@@ -37,6 +40,11 @@ const SignUp = () => {
         setLoading(true)
       // upload image  and get image
       const image_url = await imageUpload(image);
+
+      // save user data
+      const userInfo = {email, designation, name, role, bank_no, salary, verified: false, image_url}
+      const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/user`, userInfo);
+      // console.log(data) 
 
       // user register
       const result = await createUser(email, password);
@@ -53,7 +61,7 @@ const SignUp = () => {
   // hundle google login 
   const hundleGoogleLogin = async () => {
     try{ 
-      await signInWithGoogle()
+      await signInWithGoogle() 
       navigate('/')
       toast.success('sign up successfully')
     } catch(err) {
@@ -80,6 +88,19 @@ const SignUp = () => {
             className="space-y-4 p-8  "
           >
             <div className="space-y-4">
+            <div>
+                <label htmlFor="name" className="block mb-2 text-sm">
+                  Name:
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Enter Your Name"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#00808028] bg-gray-200 text-gray-900"
+                  data-temp-mail-org="0"
+                />
+              </div>
               <div>
                 <label htmlFor="designation" className="block mb-2 text-sm">
                   Designation:

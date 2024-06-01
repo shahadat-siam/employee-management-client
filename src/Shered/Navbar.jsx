@@ -6,7 +6,7 @@ import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-   
+
   const hundleMenuBar = () => {
     const nav = document.getElementById("nav-item");
     nav.classList.add("active");
@@ -18,9 +18,9 @@ const Navbar = () => {
   return (
     <>
       <div className="md:px-12 py-2 px-8 sticky top-0 z-10 max-w-screen-xl shadow-sm  bg-[#f3fafa] mx-auto flex justify-between items-center">
-        <div className="flex items-center text-[#254336] justify-center  ">
-          <img src="../../public/logo2.png" className="w-[70px]" alt="" />
-          <h2 className="text-4xl font-buntu font-bold">TalentIQ</h2>
+        <div className="flex items-center px-4 py-1 rounded-lg shadow-lg bg-orange-100 text-[#254336] justify-center  ">
+          <img src="../../public/logo2.png" className="w-[50px]" alt="" />
+          <h2 className="text-3xl font-buntu font-bold">TalentIQ</h2>
         </div>
 
         <div className="flex items-center">
@@ -31,9 +31,11 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="#" className=" ">
-                Dashboard
-              </a>
+              <Link to="/dashboard">
+                <a href="#" className=" ">
+                  Dashboard
+                </a>
+              </Link>
             </li>
             <li>
               <a href="#" className=" ">
@@ -59,7 +61,7 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full" title="">
-                  <img 
+                  <img
                     referrerPolicy="no-referrer"
                     alt="User Profile Photo"
                     src={user?.photoURL}
@@ -71,7 +73,10 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3  p-2 shadow-sm bg-base-100 rounded-box w-32"
               >
                 <li className="mt-2">
-                  <button onClick={logOut} className="bg-gray-200 block text-center">
+                  <button
+                    onClick={logOut}
+                    className="bg-gray-200 block text-center"
+                  >
                     Logout
                   </button>
                 </li>
