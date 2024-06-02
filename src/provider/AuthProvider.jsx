@@ -44,8 +44,21 @@ const AuthProvider = ({ children }) => {
     })
   }
 
+    // Get token from server
+    const getToken = async email => {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        { email },
+        { withCredentials: true }
+      )
+      return data
+    }
+
   const logOut = async () => {
     setLoading(true) 
+    await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+      withCredentials: true,
+    })
     return signOut(auth)
   }
  
@@ -73,6 +86,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) { 
+        getToken(currentUser.email)
         saveUser(currentUser)
       }
       setLoading(false);
