@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import LoadingSpinner from "../../Shered/LoadingSpinner";
 
 const WorkSheet = () => {
   const { user } = useAuth();
@@ -19,6 +20,7 @@ const WorkSheet = () => {
     },
     onSuccess: () => {
       toast.success("successfully added");
+      refetch()
     },
   });
 
@@ -33,7 +35,7 @@ const WorkSheet = () => {
     const workSheet = { task, hours, date, email: user?.email };
 
     try {
-      await mutateAsync(workSheet);
+      await mutateAsync(workSheet); 
       form.reset();
     } catch (err) {
       toast.error(err.message);
@@ -47,12 +49,13 @@ const WorkSheet = () => {
   } = useQuery({
     queryKey: ["mywork", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/mywork/${user?.email}`);
+      const { data } = await axiosSecure.get(`/mywork/${user?.email}`);  
       return data;
     },
+    
   });
-  console.log(works);
-
+  // console.log(works);
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div>
