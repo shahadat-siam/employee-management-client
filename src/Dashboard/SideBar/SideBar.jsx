@@ -12,8 +12,7 @@ import EmployeeMenu from '../Employee/EmployeeMenu';
 
 const SideBar = () => {
     const [isActive, setActive] = useState(false);
-    const [role] = useRole() 
-    console.log(role)
+    const [role] = useRole()  
   
     // Sidebar Responsive Handler
     const handleToggle = () => {

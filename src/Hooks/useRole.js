@@ -13,8 +13,7 @@ const useRole = () => {
       const { data } = await axiosSecure(`/user/${user?.email}`);
       return data.role;
     },
-  });
-console.log(role)
+  }); 
   return [role, isLoading];
 };
 
