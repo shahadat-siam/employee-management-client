@@ -11,6 +11,7 @@ import Details from "../Dashboard/HR/Details";
 import Progress from "../Dashboard/HR/Progress";
 import WorkSheet from "../Dashboard/Employee/WorkSheet";
 import PaymentHis from "../Dashboard/Employee/PaymentHis";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
             element: <Home/>
         },
         {
-            
+           path: '/contact',
+           element: <ContactUs/> 
         }
       ]
     },

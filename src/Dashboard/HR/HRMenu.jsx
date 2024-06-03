@@ -7,7 +7,7 @@ const HRMenu = () => {
     return (
         <div>
             <MenuItem label='Employee List' address='/dashboard/employee-list' icon={FaList} />
-            <MenuItem label='Details Slug' address='/dashboard/details' icon={GiGraspingSlug} />
+            {/* <MenuItem label='Details Slug' address='/dashboard/details' icon={GiGraspingSlug} /> */}
             <MenuItem label='Progress' address='/dashboard/progress' icon={GiProgression} />
         </div>
     );

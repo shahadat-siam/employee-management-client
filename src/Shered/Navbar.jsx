@@ -26,21 +26,19 @@ const Navbar = () => {
         <div className="flex items-center">
           <div id="nav-item" className={`md:flex hidden`}>
             <li>
-              <a href="#" className=" ">
-                Home
-              </a>
-            </li>
-            <li>
-              <Link to="/dashboard">
-                <a href="#" className=" ">
-                  Dashboard
-                </a>
+              <Link to="/">
+                <a className=" ">Home</a>
               </Link>
             </li>
             <li>
-              <a href="#" className=" ">
-                Contact us
-              </a>
+              <Link to="/dashboard">
+                <a className=" ">Dashboard</a>
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact">
+                <a className=" ">Contact us</a>
+              </Link>
             </li>
 
             <div id="close" className="md:hidden  absolute top-8 left-8  ">

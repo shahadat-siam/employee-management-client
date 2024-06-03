@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shered/LoadingSpinner";
 import { IoCloseSharp } from "react-icons/io5";
-import { FaSquareCheck } from "react-icons/fa6"; 
+import { FaSquareCheck } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const EmployeeList = () => {
-  const axiosSecure = useAxiosSecure(); 
+  const axiosSecure = useAxiosSecure();
 
   const {
     data: users = [],
@@ -18,14 +19,18 @@ const EmployeeList = () => {
       return data;
     },
   });
-  refetch();
   const allEmployee = users.filter((user) => user?.role === "Employee");
 
   // update verified status
-  const hundleVerified = async (email, verified) => { 
-    const { data } = await axiosSecure.patch(`/user/${email}`, {verified });
-    console.log(data); 
+  const hundleVerified = async (email, verified) => {
+    const { data } = await axiosSecure.patch(`/user/${email}`, { verified });
+    console.log(data);
+    refetch();
   };
+
+  const hundleDetailsSlug = id => {
+    console.log(id)
+  }
 
   if (isLoading) return <LoadingSpinner />;
   return (
@@ -117,9 +122,19 @@ const EmployeeList = () => {
                       <p className="  whitespace-no-wrap">{employee?.salary}</p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <button className="btn btn-sm bg-[#008080] hover:bg-[#008089] text-white">
+                      <button
+                        disabled={!employee?.verified}
+                        className="btn btn-sm bg-[#008080] hover:bg-[#008089] text-white"
+                      >
                         Pay
                       </button>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <Link to='/dashboard/details'>
+                        <button onClick={() => hundleDetailsSlug(employee?._id)} className="btn btn-sm bg-[#008080] hover:bg-[#008089] text-white">
+                          Details
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}
