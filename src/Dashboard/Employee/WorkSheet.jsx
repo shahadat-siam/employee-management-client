@@ -30,10 +30,10 @@ const WorkSheet = () => {
     const form = e.target;
     const task = form.tasks.value;
     const hours = form.hours.value;
-    const date = startDate;
+    const date =  startDate;
 
     const workSheet = { task, hours, date, email: user?.email };
-
+    // console.log(workSheet)
     try {
       await mutateAsync(workSheet); 
       form.reset();

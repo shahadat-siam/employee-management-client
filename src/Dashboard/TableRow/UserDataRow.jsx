@@ -1,9 +1,19 @@
+import { useState } from "react";
 import { FcApproval, FcCheckmark } from "react-icons/fc";
 import { ImFire } from "react-icons/im";
 import { TiInputChecked } from "react-icons/ti";
+import FiredModal from "../../Component/Modal/FiredModal";
+
 
  
-const UserDataRow = ({user, refetch}) => {
+const UserDataRow = ({user, userEmail, refetch}) => {
+  let [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+  const hundleDelete = (userEmail) => {
+    console.log(userEmail)
+  }
     return (
         <tr>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -23,15 +33,15 @@ const UserDataRow = ({user, refetch}) => {
         </td>
   
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-          <button  className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+          <button onClick={() => setIsOpen(true)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
             <span
               aria-hidden='true'
               className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
             ></span>
             <span className='relative text-red-500'><ImFire /></span>
           </button>
-          {/* Update User Modal */}
-          {/* <UpdateUserModal isOpen={isOpen} setIsOpen={setIsOpen} modalHandler={modalHandler} user={user} /> */}
+          {/* Delete modal */}
+         <FiredModal isOpen={isOpen} hundleDelete={hundleDelete} userEmail={userEmail} closeModal={closeModal} /> 
         </td>
       </tr>
     );

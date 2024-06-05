@@ -64,7 +64,7 @@ const AllEmployee = () => {
               </thead>
               <tbody>
                 {/* User data table row */} 
-                {allUser.map((user) => (<UserDataRow key={user._id} user={user} refetch={refetch} /> ))}
+                {allUser.map((user) => (<UserDataRow key={user._id} user={user} userEmail={user.email}  refetch={refetch} /> ))}
               </tbody>
             </table>
           </div>
