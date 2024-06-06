@@ -32,7 +32,7 @@ const WorkSheet = () => {
     const hours = form.hours.value;
     const date =  startDate;
 
-    const workSheet = { task, hours, date, email: user?.email };
+    const workSheet = { task, hours, date, email: user?.email, name:user?.displayName, };
     // console.log(workSheet)
     try {
       await mutateAsync(workSheet); 
@@ -51,8 +51,7 @@ const WorkSheet = () => {
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/mywork/${user?.email}`);  
       return data;
-    },
-    
+    }, 
   });
   // console.log(works);
   if (isLoading) return <LoadingSpinner />;

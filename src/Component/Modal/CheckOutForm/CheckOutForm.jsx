@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { ImSpinner9 } from "react-icons/im";
+import toast from "react-hot-toast";
 
 const CheckoutForm = ({ closeModal, employee, month, year }) => {
   const axiosSecure = useAxiosSecure();
@@ -15,7 +16,8 @@ const CheckoutForm = ({ closeModal, employee, month, year }) => {
   const [seeError, setSeeError] = useState("");
   const [proccesing, setProccesing] = useState(false);
   // console.log(clientSecret);
-
+ 
+  
   useEffect(() => {
     // fetch client secret
     if (employee?.salary > 1) {
@@ -33,8 +35,13 @@ const CheckoutForm = ({ closeModal, employee, month, year }) => {
 
   const handleSubmit = async (event) => {
     // Block native form submission.
-    event.preventDefault();
-    console.log(month,year)
+    event.preventDefault(); 
+    
+    const {data} = await axiosSecure.get(`/paid/${employee?.email}`);  
+    if( (data.filter(data => data.month === month && data.year === year )).length > 0){
+      closeModal() 
+      return toast.error('Already paid for this Month')  
+    }  
     setProccesing(true);
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -64,8 +71,7 @@ const CheckoutForm = ({ closeModal, employee, month, year }) => {
     } else {
       console.log("[PaymentMethod]", paymentMethod);
       setSeeError("");
-    }
-
+    } 
     // confirm payment
     const { error: confirmError, paymentIntent } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -93,10 +99,22 @@ const CheckoutForm = ({ closeModal, employee, month, year }) => {
         month: month, year: year,
         date: new Date(),
       }; 
-      console.log(paymentInfo);
- 
-      setProccesing(false);
-      closeModal()
+      delete paymentInfo._id
+      // console.log(paymentInfo); 
+      try{
+        // save payment info new collection in db
+        const {data} = await axiosSecure.post('/paid', paymentInfo)
+        console.log(data) 
+        // change room status booked in db
+        //  await axiosSecure.patch(`/room/status/${bookingInfo?._id}`, {status : true})
+        // console.log(data)
+        // refetch() 
+        closeModal()
+        toast.success('salary paid')
+      } catch(error) {
+        console.log(error)
+      } 
+      setProccesing(false); 
     }
   };
 
