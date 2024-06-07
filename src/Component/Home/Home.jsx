@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import LoadingSpinner from "../../Shered/LoadingSpinner";
 import Carosoul from "../../Pages/Carousole/Carosoul";
+import Testimonials from "./Testimonials/Testimonials";
 
  
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
                 <title>Employee Management | Home</title>
             </Helmet> 
             <Carosoul/>
+            <Testimonials/>
         </div>
     );
 };
