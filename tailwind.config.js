@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily:{
+      Itim:"'Itim', cursive"
+    }
   },
   plugins: [
     require('daisyui'),

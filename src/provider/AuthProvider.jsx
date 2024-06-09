@@ -20,7 +20,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // console.log(user)
+  console.log(user)
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -77,6 +77,7 @@ const AuthProvider = ({ children }) => {
       // console.log(currentUser)
       if(currentUser?.name !== null || currentUser?.image_url !== null){
         const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/user`, currentUser)
+        console.log(data)
         return data
       } 
     }
@@ -87,6 +88,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) { 
         getToken(currentUser.email)
+        console.log(currentUser)
         saveUser(currentUser)
       }
       setLoading(false);

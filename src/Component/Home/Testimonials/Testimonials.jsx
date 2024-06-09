@@ -27,7 +27,7 @@ const Testimonials = () => {
       return data;
     },
   });
-  console.log(testimonials);
+  // console.log(testimonials);
   return (
     <>
       <div className='px-6 py-8 mx-auto'>

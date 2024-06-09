@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import MenuItem from "../MenuItem/MenuItem";
 import { BsGraphUp } from "react-icons/bs";
 import { AiOutlineBars } from "react-icons/ai";
@@ -9,10 +9,18 @@ import useRole from "../../Hooks/useRole";
 import { FaUsersGear } from "react-icons/fa6";
 import HRMenu from "../HR/HRMenu";
 import EmployeeMenu from "../Employee/EmployeeMenu";
+import useAuth from "../../Hooks/useAuth";
 
 const SideBar = () => {
+  const {logOut} = useAuth()
   const [isActive, setActive] = useState(false);
   const [role] = useRole();
+  const navigate = useNavigate()
+
+  const logout = () => {
+    logOut()
+    navigate('/login')
+  }
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -92,7 +100,7 @@ const SideBar = () => {
         <div>
           <hr />
           <button
-            //   onClick={logOut}
+              onClick={logout}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />

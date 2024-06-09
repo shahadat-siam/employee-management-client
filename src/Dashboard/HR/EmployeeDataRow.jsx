@@ -11,13 +11,7 @@ const EmployeeDataRow = ({ employee, refetch }) => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
-  const hubdleGetEmail = async (email) => {
-    console.log(email)
-    const { data } = await axiosSecure(`/user/${email}`);
-    console.log(data)
-  }
-
+ 
   // update verified status
   const hundleVerified = async (email, verified) => {
     const { data } = await axiosSecure.patch(`/user/${email}`, { verified });

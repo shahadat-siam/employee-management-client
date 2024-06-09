@@ -7,8 +7,7 @@ import { imageUpload } from "../../Component/api";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 
-const SignUp = () => {
-
+const SignUp = () => { 
   const { createUser, loading, setLoading, updateUserProfile, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
    
@@ -44,7 +43,7 @@ const SignUp = () => {
       // save user data
       const userInfo = {email, designation, name, role, bank_no, salary, verified: false, image_url}
       const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/user`, userInfo);
-      // console.log(data) 
+      console.log(data) 
 
       // user register
       const result = await createUser(email, password);
