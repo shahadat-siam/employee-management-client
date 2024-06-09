@@ -1,0 +1,137 @@
+/* WelcomeSection.css */
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #5c258d, #4389a2); /* Modern gradient */
+    color: #fff;
+    overflow: hidden;
+  }
+  
+  @media (max-width: 768px) {
+    .section {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+  }
+  
+  .content {
+    max-width: 50%;
+  }
+  
+  @media (max-width: 768px) {
+    .content {
+      max-width: 100%;
+    }
+  }
+  
+  .headline {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    animation: fadeInDown 1s ease-out;
+  }
+  
+  .subheadline {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 1.5s ease-out;
+  }
+  
+  .description {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    animation: fadeInDown 2s ease-out;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .button-container {
+      justify-content: center;
+    }
+  }
+  
+  .primary-button {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6f61; /* Warm color for contrast */
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 111, 97, 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .primary-button:hover {
+    background-color: #ff3d2e;
+    box-shadow: 0 6px 20px rgba(255, 111, 97, 0.7);
+  }
+  
+  .secondary-button {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #4389a2;
+    background-color: #d1c5c5;
+    border: 2px solid #d1c5c5;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(67, 137, 162, 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .secondary-button:hover {
+    background-color: #e0e0e0;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 6px 20px rgba(67, 137, 162, 0.7);
+  }
+  
+  .hero-image {
+    max-width: 40%;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 2s ease-out;
+    transition: transform 0.3s ease;
+  }
+  
+  .hero-image:hover {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-image {
+      max-width: 80%;
+      margin-top: 2rem;
+    }
+  }
+  

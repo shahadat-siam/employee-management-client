@@ -5,6 +5,7 @@ import Carosoul from "../../Pages/Carousole/Carosoul";
 import Testimonials from "./Testimonials/Testimonials";
 import Looking from "./Others/Looking"; 
 import OurService from "./Service/OurService";
+import WelcomeSection from "./WelcomeSection/WelcomeSection";
 
  
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
                 <title>Employee Management | Home</title>
             </Helmet> 
             <Carosoul/> 
+            <WelcomeSection/>
             <OurService/>
             <Testimonials/>
             <Looking/>
