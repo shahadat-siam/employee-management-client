@@ -7,7 +7,9 @@ import Footer from "../Shered/Footer";
   return (
     < >
       <Navbar/>
-      <Outlet/>
+      <div className='min-h-[calc(100vh-138px)]'>
+        <Outlet />
+      </div>
       <Footer/>
     </ >
   );

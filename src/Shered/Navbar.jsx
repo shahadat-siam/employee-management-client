@@ -15,11 +15,14 @@ const Navbar = () => {
     const nav = document.getElementById("nav-item");
     nav.classList.remove("active");
   };
+  const hundleClick = () => {
+    console.log('click logout')
+  }
   return (
     <>
       <div className="md:px-12 py-2 px-8 sticky top-0 z-10 max-w-screen-xl shadow-sm  bg-[#f3fafa] mx-auto flex justify-between items-center">
         <div className="flex items-center px-4 py-1 rounded-lg shadow-lg bg-orange-100 text-[#254336] justify-center  ">
-          <img src="../../public/logo2.png" className="w-[50px]" alt="" />
+          <img src="https://i.ibb.co/qYxrp45/logo2.png" className="w-[50px]" alt="" />
           <h2 className="text-3xl font-Itim font-bold">TalentIQ</h2>
         </div>
 
@@ -72,7 +75,8 @@ const Navbar = () => {
               >
                 <li className="mt-2">
                   <button
-                    onClick={logOut}
+                  type="button"
+                    onClick={async() =>{ await logOut(); hundleClick()}}
                     className="bg-gray-200 block text-center"
                   >
                     Logout

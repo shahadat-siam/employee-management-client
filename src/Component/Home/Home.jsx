@@ -5,8 +5,7 @@ import Carosoul from "../../Pages/Carousole/Carosoul";
 import Testimonials from "./Testimonials/Testimonials";
 import Looking from "./Others/Looking"; 
 import OurService from "./Service/OurService";
-import WelcomeSection from "./WelcomeSection/WelcomeSection";
-
+import WelcomeSection from "./WelcomeSection/WelcomeSection";    
  
 const Home = () => {
     const {loading} = useAuth()
@@ -18,7 +17,7 @@ const Home = () => {
             </Helmet> 
             <Carosoul/> 
             <WelcomeSection/>
-            <OurService/>
+            <OurService/>  
             <Testimonials/>
             <Looking/>
         </div>
