@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div className="max-w-7xl  mx-auto">
             <Helmet>
-                <title>Employee Management | Home</title>
+                <title>Home | Employee Management</title>
             </Helmet> 
             <Carosoul/> 
             <WelcomeSection/>

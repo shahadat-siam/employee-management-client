@@ -51,6 +51,9 @@ const AllEmployee = () => {
   if (isLoading) return <LoadingSpinner />;
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | All Employee, HR </title>
+      </Helmet>
       <div className="flex justify-between items-center">
         <h2 className="text-4xl font-semibold text-center">
           All Employee Here
@@ -71,10 +74,7 @@ const AllEmployee = () => {
             <RiLayoutGrid2Fill />
           </div>
         </div>
-      </div>
-      <Helmet>
-        <title>All Employee List</title>
-      </Helmet>
+      </div> 
 
       <div className={`py-8  ${layout === 1 ? "flex" : "hidden"}`}>
         <div className="mx-auto md:w-4/5 px-4 sm:px-8 py-4 overflow-x-auto">

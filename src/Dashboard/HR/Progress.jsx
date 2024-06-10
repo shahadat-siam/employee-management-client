@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const Progress = () => {
   const axiosSecure = useAxiosSecure();
@@ -17,6 +18,9 @@ const Progress = () => {
 //   console.log(works);
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | All Employee</title>
+      </Helmet>
       <div className="space-y-1 w-44 text-sm">
         <label htmlFor="month" className="block text-gray-600">
           Name

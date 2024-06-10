@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shered/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const WorkSheet = () => {
   const { user } = useAuth();
@@ -57,6 +58,9 @@ const WorkSheet = () => {
   if (isLoading) return <LoadingSpinner />;
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | Work sheet</title>
+      </Helmet>
       <div>
         <form
           onSubmit={hundleFormSubmit}

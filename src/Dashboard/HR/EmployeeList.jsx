@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shered/LoadingSpinner";
 import EmployeeDataRow from "./EmployeeDataRow";
+import { Helmet } from "react-helmet-async";
 
 const EmployeeList = () => {
   const axiosSecure = useAxiosSecure();
@@ -23,6 +24,9 @@ const EmployeeList = () => {
   if (isLoading) return <LoadingSpinner />;
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | All Employee</title>
+      </Helmet>
       <div className="py-8">
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">

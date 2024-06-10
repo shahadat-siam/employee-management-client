@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHis = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,6 +20,9 @@ const PaymentHis = () => {
   console.log(history);
   return (
     <div >
+      <Helmet>
+        <title>Dashboard | Payment History</title>
+      </Helmet>
       <div className="py-8">
         <div className="flex justify-center px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-[600px] shadow rounded-lg overflow-hidden">

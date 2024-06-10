@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Chart from "./Chart";  
+import { Helmet } from "react-helmet-async";
 
 const Details = () => {
   const { id } = useParams();
@@ -21,6 +22,9 @@ const Details = () => {
   
   return ( 
     <div className="flex flex-col gap-5 p-2 justify-center mt-2 items-center ">
+      <Helmet>
+        <title>Dashboard | Details Employee</title>
+      </Helmet>
       <div className="bg-white shadow-lg  rounded-2xl ">
         <img
           alt="profile"
