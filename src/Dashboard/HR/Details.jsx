@@ -20,7 +20,7 @@ const Details = () => {
   }); 
   
   return ( 
-    <div className="md:flex gap-5 p-3 justify-center mt-10 items-center ">
+    <div className="flex flex-col gap-5 p-2 justify-center mt-2 items-center ">
       <div className="bg-white shadow-lg  rounded-2xl ">
         <img
           alt="profile"
@@ -51,7 +51,7 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <div className="p-2 overflow-auto bg-purple-100 rounded-xl">
+      <div className="p-2 md:w-[700px] w-[360px] overflow-auto bg-purple-100 rounded-xl">
         <Chart email={user?.email} />
       </div>
     </div>

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { FcApproval, FcCheckmark } from "react-icons/fc";
-import { ImFire } from "react-icons/im";
-import { TiInputChecked } from "react-icons/ti";
+import { FcCheckmark } from "react-icons/fc";
+import { ImFire } from "react-icons/im"; 
 import FiredModal from "../../Component/Modal/FiredModal";
 
 
  
-const UserDataRow = ({user, userEmail, refetch}) => {
+const UserDataRow = ({user, userEmail, hundleMakeHR }) => {
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
     setIsOpen(false)
@@ -28,7 +27,7 @@ const UserDataRow = ({user, userEmail, refetch}) => {
               {user.role}
             </p>
           ) : (
-            <p className='text-red-600 text-2xl cursor-pointer whitespace-no-wrap'><FcCheckmark/></p>
+            <button type="button" onClick={() => hundleMakeHR(user?.email)}>  <p className='text-red-600 text-2xl cursor-pointer whitespace-no-wrap'><FcCheckmark/></p></button>
           )}
         </td>
   

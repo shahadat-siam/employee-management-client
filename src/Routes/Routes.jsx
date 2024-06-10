@@ -12,6 +12,7 @@ import Progress from "../Dashboard/HR/Progress";
 import WorkSheet from "../Dashboard/Employee/WorkSheet";
 import PaymentHis from "../Dashboard/Employee/PaymentHis";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
     },
     {
       path: '/dashboard',
-      element: <Dashboard/>,
+      element:  <PrivateRoutes><Dashboard/></PrivateRoutes>,
       children: [
         {
           index:true,
@@ -46,27 +47,27 @@ const router = createBrowserRouter([
         },
         {
           path: 'all-employee',
-          element: <AllEmployee/>
+          element:  <PrivateRoutes><AllEmployee/></PrivateRoutes>
         },
         {
           path: 'employee-list',
-          element: <EmployeeList/>
+          element: <PrivateRoutes><EmployeeList/></PrivateRoutes>
         },
         {
           path: 'details/:id',
-          element: <Details/>
+          element:  <PrivateRoutes><Details/></PrivateRoutes>
         },
         {
           path: 'progress',
-          element: <Progress/>
+          element:  <PrivateRoutes><Progress/></PrivateRoutes>
         },
         {
           path: 'work-sheet',
-          element: <WorkSheet/>
+          element: <PrivateRoutes><WorkSheet/></PrivateRoutes>
         },
         {
           path: 'payment-history',
-          element: <PaymentHis/>
+          element: <PrivateRoutes><PaymentHis/></PrivateRoutes>
         }
       ]
     }

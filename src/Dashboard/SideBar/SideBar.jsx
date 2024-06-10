@@ -35,9 +35,9 @@ const SideBar = () => {
             <Link to="/">
               <div className="flex items-center px-4 py-1 rounded-lg shadow-lg bg-orange-100 text-[#254336] justify-center  ">
                 <img
-                  src="../../../public/logo2.png"
+                  src="https://i.ibb.co/qYxrp45/logo2.png"
                   className="w-[50px]"
-                  alt=""
+                  alt="logo"
                 />
                 <h2 className="text-3xl font-buntu font-bold">TalentIQ</h2>
               </div>
